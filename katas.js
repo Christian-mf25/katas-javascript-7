@@ -37,19 +37,15 @@ console.log("newForEach", newForEach(arrayStr, lista))
 
 /** FILL */
 
-const newFill = (arr, valor, inicio, fim) =>{
+const newFill = (arr, valor, inicio = 0, fim) =>{
 
-	let comeca = inicio
 	let final = fim
 
 	if(fim === undefined){
 		final =  arr.length - 1
 	}
-	if(inicio === undefined){
-		comeca = 0
-	}
 
-	for(let i = comeca; i < final; i++){
+	for(let i = inicio; i < final; i++){
 		arr[i] = valor
 	}
 	return arr
@@ -62,16 +58,17 @@ console.log("newFill", newFill(arrayNum,4, 1, 3))
 /** MAP */
 
 const newMap = (arr, callBack) =>{
+
 	let result = []
 
 	for(let i = 0; i < arr.length; i++){
 		let valorAtual  = arr[i]
 		let indice = i
 		result.push(callBack(valorAtual, indice, arr))
-		
 	}
 	return result
 }
+
 console.log("map",arrayNum.map(dobra))
 console.log("newMap", newMap(arrayNum, dobra))
 
@@ -132,6 +129,7 @@ console.log("newFindIndex", newFindIndex(arrayNum, maiorQueDez))
 /** EVERY */
 
 const newEvery = (arr, callBack) =>{
+
 	for(let i = 0; i < arr.length; i++){
 		let valorAtual = arr[i]
 		let indice = i
@@ -149,6 +147,7 @@ console.log("newEvery", newEvery(arrayNum, maiorQueDez))
 /** FILTER */
 
 const newFilter = (arr, callBack) =>{
+
 	let result = []
 	
 	for(let i = 0; i < arr.length; i++){
@@ -168,6 +167,7 @@ console.log("newFilter", newFilter(arrayNum, numPar))
 /** CONCAT */
 
 const newConcat = (arr, ...arr2) =>{
+
 	let result = []
 
 	for(let i = 0; i < arr.length; i++){
@@ -190,15 +190,9 @@ console.log("newConcat", newConcat(arrayNum, arrayStr, ["vddv", 123]))
 
 /** INCLUDES */
 
-const newIncludes = (arr, buscar, peloIndice) =>{
+const newIncludes = (arr, buscar, peloIndice = 0) =>{
 
-	let indice = peloIndice
-	
-	if(peloIndice === undefined){
-		indice = 0
-	}
-
-	for(let i = indice; i < arr.length; i++){
+	for(let i = peloIndice; i < arr.length; i++){
 		let valorAtual = arr[i]
 		if(valorAtual === buscar){
 			return true
@@ -214,15 +208,9 @@ console.log("newIncludes", newIncludes(arrayNum, 4, 6))
 
 /** INDEXOF */
 
-const newIndexOf = (arr, busca, inicio) => {
+const newIndexOf = (arr, busca, inicio = 0) => {
 	
-	let comeca = inicio
-	
-	if(inicio === undefined){
-		comeca = 0
-	}
-
-	for(let i = comeca; i < arr.length; i++){
+	for(let i = inicio; i < arr.length; i++){
 		if(busca === arr[i]){
 			return i
 		}
@@ -236,16 +224,11 @@ console.log("newIndexOf", newIndexOf(arrayNum, 7, 3))
 
 /** JOIN */
 
-const newJoin = (arr, separador) =>{
+const newJoin = (arr, separador = ",") =>{
 
 	let result = ""
-	let separaPor = separador
 	let limite = arr.length - 1
 
-	if(separador === undefined){
-		separaPor = ","
-	}
-	
 	for(let i = 0; i < arr.length; i++){
 		if(typeof arr[i] === "string"){
 			let palavra = arr[i]
@@ -257,7 +240,7 @@ const newJoin = (arr, separador) =>{
 			result += arr[i]
 		}
 		if(i !== limite){
-			result += separaPor
+			result += separador
 		}
 	}
 	return result
@@ -269,12 +252,9 @@ console.log("newJoin", newJoin(arrayStr, " - "))
 
 /** REDUCE */
 
-const newReduce = (arr, callBack, acumulador) => {
+const newReduce = (arr, callBack, acumulador = 0) => {
+	
 	let result = acumulador
-
-	if(acumulador === undefined){
-		result = 0
-	}
 
 	for(let i = 0; i < arr.length; i++){
 		let valorAtual = arr[i]
